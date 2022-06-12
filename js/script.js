@@ -39,22 +39,25 @@ boardStates.forEach((rows, rowIndex) => {
 function checkWin() {
 	let [[b1, b2, b3], [b4, b5, b6], [b7, b8, b9]] = boardStates
 
-	const winningCombination = [
-		[b1, b2, b3],
-		[b4, b5, b6],
-		[b7, b8, b9],
-		[b1, b4, b7],
-		[b2, b5, b8],
-		[b3, b6, b9],
-		[b1, b5, b9],
-		[b3, b5, b7],
-	]
-
-	for (let i = 0; i < winningCombination.length; i++) {
-		for (let j = 0; j < winningCombination[i].length; j++) {
-			if (winningCombination[i][j] === boardStates[j][j]) {
-				return console.log('WINNER!')
-			}
+	for (let i = 0; i < boardStates.length; i++) {
+		if (
+			boardStates[i][0] !== '' &&
+			boardStates[i][0] === boardStates[i][1] &&
+			boardStates[i][1] === boardStates[i][2]
+		) {
+			console.log('Winner')
+		} else if (
+			boardStates[0][i] !== '' &&
+			boardStates[0][i] === boardStates[1][i] &&
+			boardStates[1][i] === boardStates[2][i]
+		) {
+			console.log('Winner')
 		}
+	}
+
+	if (b1 !== '' && b1 === b5 && b5 === b9) {
+		console.log('Winner')
+	} else if (b3 !== '' && b3 === b5 && b5 === b7) {
+		console.log('Winner')
 	}
 }
