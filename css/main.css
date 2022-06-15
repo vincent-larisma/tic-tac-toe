@@ -32,4 +32,26 @@ html {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.xChoice,
+.circleChoice,
+.undo,
+.redo,
+.restartButton {
+  font-size: 4vmin;
+  cursor: pointer;
+}
+
+.circleChoice:hover,
+.xChoice:hover,
+.undo:hover,
+.redo:hover,
+.restartButton:hover {
+  color: rgb(120, 120, 120);
 }/*# sourceMappingURL=main.css.map */
