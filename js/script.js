@@ -11,6 +11,7 @@ let boardStates = [
 	['', '', ''],
 	['', '', ''],
 ]
+let historyState = []
 let xPoint = 0
 let circlePoint = 0
 let draw = 0
@@ -40,8 +41,23 @@ boardStates.forEach((rows, rowIndex) => {
 				boardStates[columnIndex][rowIndex] = block.textContent
 				xOrO = 'X'
 			}
+			getHistory()
 			checkWin()
 		}
+
+		restartBtn.addEventListener('click', () => {
+			columnDiv.textContent = ''
+			isActive = true
+			columnDiv.addEventListener('click', inputClick, { once: true })
+			xOrO = 'X'
+			redoBtn.textContent = ''
+			undoBtn.textContent = ''
+			restartBtn.textContent = ''
+		})
+
+		undoBtn.addEventListener('click', () => {
+			console.log(historyState)
+		})
 
 		columnDiv.addEventListener('click', inputClick, { once: true })
 	})
@@ -74,54 +90,47 @@ function addPoint() {
 	}
 }
 
+function compiledCheckWinFunc() {
+	knowWinner()
+	addPoint()
+	undoOrRedo()
+	reset()
+}
+
 function checkWin() {
 	let [[b1, b2, b3], [b4, b5, b6], [b7, b8, b9]] = boardStates
-	let move = false
+	const winningCombination = [
+		[b1, b2, b3],
+		[b4, b5, b6],
+		[b7, b8, b9],
+		[b1, b4, b7],
+		[b2, b5, b8],
+		[b3, b6, b9],
+		[b1, b5, b9],
+		[b3, b5, b7],
+	]
 
-	for (let i = 0; i < boardStates.length; i++) {
-		if (
-			boardStates[i][0] !== '' &&
-			boardStates[i][0] === boardStates[i][1] &&
-			boardStates[i][1] === boardStates[i][2] &&
-			isActive === true
-		) {
-			knowWinner()
-			addPoint()
-			undoOrRedo()
-			reset()
+	for (let i = 0; i < winningCombination.length; i++) {
+		let a = winningCombination[i][0]
+		let b = winningCombination[i][1]
+		let c = winningCombination[i][2]
+
+		if (a !== '' && a === b && b === c && isActive === true) {
+			compiledCheckWinFunc()
 			isActive = false
-
-			return
-		} else if (
-			boardStates[0][i] !== '' &&
-			boardStates[0][i] === boardStates[1][i] &&
-			boardStates[1][i] === boardStates[2][i] &&
-			isActive === true
-		) {
-			knowWinner()
-			addPoint()
-			undoOrRedo()
-			reset()
-			isActive = false
-
-			return
+			break
 		} else if (b1 !== '' && b1 === b5 && b5 === b9 && isActive === true) {
-			knowWinner()
-			addPoint()
-			undoOrRedo()
-			reset()
+			compiledCheckWinFunc()
 			isActive = false
-
-			return
+			break
 		} else if (b3 !== '' && b3 === b5 && b5 === b7 && isActive === true) {
-			knowWinner()
-			addPoint()
-			undoOrRedo()
-			reset()
+			compiledCheckWinFunc()
 			isActive = false
-
-			return
+			break
 		} else if (
+			a !== '' &&
+			a !== b &&
+			b !== c &&
 			b1 !== '' &&
 			b2 !== '' &&
 			b3 !== '' &&
@@ -138,8 +147,7 @@ function checkWin() {
 			undoOrRedo()
 			reset()
 			isActive = false
-
-			return
+			break
 		}
 	}
 }
@@ -155,17 +163,15 @@ function getChoice() {
 	})
 }
 
+function getHistory() {
+	historyState.push(JSON.parse(JSON.stringify(boardStates)))
+	console.log(historyState)
+}
+
 function undoOrRedo() {
-	let undoArray = boardStates.flat()
-	let redoArray = []
 	redoBtn.textContent = 'REDO'
 	undoBtn.textContent = 'UNDO'
-	console.log(undoArray)
 	redoBtn.addEventListener('click', () => {})
-	undoBtn.addEventListener('click', () => {
-		redoArray.push(undoArray.pop())
-		console.log(redoArray)
-	})
 }
 
 function reset() {
@@ -176,8 +182,6 @@ function reset() {
 			['', '', ''],
 			['', '', ''],
 		]
-		console.log(boardStates)
+		isActive = true
 	})
 }
-
-console.log(boardStates)
