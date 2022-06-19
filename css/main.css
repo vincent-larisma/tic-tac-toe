@@ -1,7 +1,7 @@
 .grid-container {
   display: grid;
   place-content: center;
-  height: 100vh;
+  height: 95vh;
   width: 100vw;
 }
 
@@ -36,22 +36,39 @@ html {
 
 .flex-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 5rem;
+  margin-top: 5rem;
+  margin-bottom: -5rem;
+  align-items: baseline;
 }
 
-.xChoice,
-.circleChoice,
+.xChoice, .undo,
+.redo,
+.restartButton,
+.circleChoice {
+  font-size: 4vmin;
+}
+
+.draw {
+  font-size: 2.5vmin;
+}
+
 .undo,
 .redo,
 .restartButton {
-  font-size: 4vmin;
   cursor: pointer;
 }
 
-.circleChoice:hover,
-.xChoice:hover,
 .undo:hover,
 .redo:hover,
 .restartButton:hover {
   color: rgb(120, 120, 120);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: -7rem;
+  gap: 2rem;
 }/*# sourceMappingURL=main.css.map */

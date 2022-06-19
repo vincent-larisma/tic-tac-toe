@@ -49,11 +49,13 @@ boardStates.forEach((rows, rowIndex) => {
     restartBtn.addEventListener('click', () => {
       columnDiv.textContent = ''
       isActive = true
+      historyCounter = 1
+      historyState = []
       columnDiv.addEventListener('click', inputClick, { once: true })
       xOrO = 'X'
-      redoBtn.textContent = ''
-      undoBtn.textContent = ''
-      restartBtn.textContent = ''
+      redoBtn.classList.remove('fa-solid', 'fa-circle-arrow-right')
+      undoBtn.classList.remove('fa-solid', 'fa-circle-arrow-left')
+      restartBtn.classList.remove('fa-solid', 'fa-rotate-right')
     })
 
     undoBtn.addEventListener('click', () => {
@@ -186,8 +188,8 @@ function updateHistory() {
 }
 
 function undoOrRedoText() {
-  redoBtn.textContent = 'REDO'
-  undoBtn.textContent = 'UNDO'
+  redoBtn.classList.add('fa-solid', 'fa-circle-arrow-right')
+  undoBtn.classList.add('fa-solid', 'fa-circle-arrow-left')
 }
 
 function undoOrRedo() {
@@ -205,7 +207,7 @@ function undoOrRedo() {
 }
 
 function reset() {
-  restartBtn.textContent = 'RESTART'
+  restartBtn.classList.add('fa-solid', 'fa-rotate-right')
   restartBtn.addEventListener('click', () => {
     boardStates = [
       ['', '', ''],
@@ -220,6 +222,7 @@ function getHistory() {
   let [[h1, h2, h3], [h4, h5, h6], [h7, h8, h9]] = boardStates
   if (h1 !== '') {
     console.log('Top Left')
+    once = false
   } else if (h2 !== '') {
     console.log('Top Mid')
   } else if (h3 !== '') {
