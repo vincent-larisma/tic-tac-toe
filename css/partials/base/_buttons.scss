@@ -15,7 +15,8 @@
 }
 .undo,
 .redo,
-.restartButton {
+.restartButton,
+[data-history] {
   @extend .xChoice;
   cursor: pointer;
 }

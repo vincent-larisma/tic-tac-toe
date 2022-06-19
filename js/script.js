@@ -5,6 +5,11 @@ const drawPoint = document.querySelector('.draw')
 const undoBtn = document.querySelector('.undo')
 const redoBtn = document.querySelector('.redo')
 const restartBtn = document.querySelector('.restartButton')
+const historyBtn = document.querySelector('[data-history]')
+const homeBtn = document.querySelector('.fa-solid')
+const historyDisplay = document.querySelector('.history-background-container')
+const orderedList = document.querySelector('.ordered-list')
+
 let xOrO = 'X'
 let boardStates = [
   ['', '', ''],
@@ -42,8 +47,8 @@ boardStates.forEach((rows, rowIndex) => {
       }
 
       updateHistory()
-      getHistory()
       checkWin()
+      getHistory()
     }
 
     restartBtn.addEventListener('click', () => {
@@ -56,6 +61,7 @@ boardStates.forEach((rows, rowIndex) => {
       redoBtn.classList.remove('fa-solid', 'fa-circle-arrow-right')
       undoBtn.classList.remove('fa-solid', 'fa-circle-arrow-left')
       restartBtn.classList.remove('fa-solid', 'fa-rotate-right')
+      orderedList.innerHTML = ''
     })
 
     undoBtn.addEventListener('click', () => {
@@ -82,9 +88,11 @@ boardStates.forEach((rows, rowIndex) => {
 
     columnDiv.addEventListener('click', inputClick, { once: true })
   })
-
   boardContainer.appendChild(rowDiv)
 })
+
+homeBtn.addEventListener('click', home)
+historyBtn.addEventListener('click', historyDisplayNone)
 
 function pointer() {
   xChoice.textContent = `X : 0`
@@ -220,24 +228,46 @@ function reset() {
 
 function getHistory() {
   let [[h1, h2, h3], [h4, h5, h6], [h7, h8, h9]] = boardStates
-  if (h1 !== '') {
-    console.log('Top Left')
-    once = false
-  } else if (h2 !== '') {
-    console.log('Top Mid')
-  } else if (h3 !== '') {
-    console.log('Top Right')
-  } else if (h4 !== '') {
-    console.log('Mid Left')
-  } else if (h5 !== '') {
-    console.log('Mid')
-  } else if (h6 !== '') {
-    console.log('Mid Right')
-  } else if (h7 !== '') {
-    console.log('Bottom Left')
-  } else if (h8 !== '') {
-    console.log('Bottom Mid')
-  } else if (h9 !== '') {
-    console.log('Bottom Right')
+  let createdList = document.createElement('li')
+  if (h1 !== '' && isActive === true) {
+    createdList.textContent = `${h1} - Top Left`
+    orderedList.appendChild(createdList)
+  } else if (h2 !== '' && isActive === true) {
+    createdList.textContent = `${h2} - Top Mid`
+    orderedList.appendChild(createdList)
+  } else if (h3 !== '' && isActive === true) {
+    createdList.textContent = `${h3} - Top Right`
+    orderedList.appendChild(createdList)
+  } else if (h4 !== '' && isActive === true) {
+    createdList.textContent = `${h4} - Mid Left`
+    orderedList.appendChild(createdList)
+  } else if (h5 !== '' && isActive === true) {
+    createdList.textContent = `${h5} - Mid`
+    orderedList.appendChild(createdList)
+  } else if (h6 !== '' && isActive === true) {
+    createdList.textContent = `${h6} - Mid Right`
+    orderedList.appendChild(createdList)
+  } else if (h7 !== '' && isActive === true) {
+    createdList.textContent = `${h7} - Bottom Left`
+    orderedList.appendChild(createdList)
+  } else if (h8 !== '' && isActive === true) {
+    createdList.textContent = `${h8} - Bottom Mid`
+    orderedList.appendChild(createdList)
+  } else if (h9 !== '' && isActive === true) {
+    createdList.textContent = `${h9} - Bottom Right`
+    orderedList.appendChild(createdList)
   }
+}
+
+function home() {
+  xPoint = 0
+  circlePoint = 0
+  draw = 0
+  xChoice.textContent = `X : ${xPoint}`
+  circleChoice.textContent = `O : ${circlePoint}`
+  drawPoint.textContent = `DRAW : ${draw}`
+}
+
+function historyDisplayNone() {
+  historyDisplay.classList.toggle('display-history')
 }

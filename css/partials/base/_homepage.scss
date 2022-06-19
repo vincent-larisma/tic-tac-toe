@@ -1,0 +1,57 @@
+.homepage-container {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.title {
+  font-size: 10vmin;
+}
+.sub-header {
+  text-align: center;
+}
+
+button {
+  margin: 2rem auto;
+  width: 10vmin;
+  height: 3vmin;
+  text-transform: uppercase;
+  background: black;
+  border: 0;
+  border-radius: 1rem;
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s, transform 300ms;
+  letter-spacing: 0.2vmin;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+button:hover {
+  transform: scale(1.1);
+  background: white;
+  border: 1px solid black;
+  letter-spacing: 1vmin;
+  width: 15vmin;
+  height: 5vmin;
+
+  a {
+    color: black;
+  }
+}
+
+.home-button {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1.2rem;
+  margin-top: 1rem;
+  font-size: 4vmin;
+  margin-bottom: -4.5rem;
+  a {
+    color: black;
+  }
+}
