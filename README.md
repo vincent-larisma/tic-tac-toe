@@ -8,4 +8,6 @@
 2. undo and redo
 3. has history of all the pasted moves
 
+## LINK
+
 [tic-tac-toe](https://vincent-larisma.github.io/tic-tac-toe/)
