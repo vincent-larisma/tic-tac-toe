@@ -23,7 +23,6 @@ let draw = 0
 let isActive = true
 let historyCounter = 1
 
-getChoice()
 pointer()
 undoOrRedo()
 
@@ -71,7 +70,7 @@ boardStates.forEach((rows, rowIndex) => {
             rowIndex
           ]
       } else {
-        historyCounter = 2
+        historyCounter = 1
       }
     })
     redoBtn.addEventListener('click', () => {
@@ -81,7 +80,7 @@ boardStates.forEach((rows, rowIndex) => {
             rowIndex
           ]
         if (historyCounter === 0) {
-          historyCounter = 2
+          historyCounter = 1
         }
       }
     })
@@ -178,17 +177,6 @@ function checkWin() {
       break
     }
   }
-}
-
-function getChoice() {
-  xChoice.addEventListener('click', () => {
-    xOrO = 'X'
-    console.log(xOrO)
-  })
-  circleChoice.addEventListener('click', () => {
-    xOrO = 'O'
-    console.log(xOrO)
-  })
 }
 
 function updateHistory() {
