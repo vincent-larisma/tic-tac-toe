@@ -17,6 +17,7 @@ let boardStates = [
   ['', '', ''],
 ]
 let historyState = []
+let once = []
 let xPoint = 0
 let circlePoint = 0
 let draw = 0
@@ -217,31 +218,40 @@ function reset() {
 function getHistory() {
   let [[h1, h2, h3], [h4, h5, h6], [h7, h8, h9]] = boardStates
   let createdList = document.createElement('li')
-  if (h1 !== '' && isActive === true) {
+  if (h1 !== '' && isActive === true && !once.some(checkH1)) {
+    once.push('h1')
     createdList.textContent = `${h1} - Top Left`
     orderedList.appendChild(createdList)
-  } else if (h2 !== '' && isActive === true) {
+  } else if (h2 !== '' && isActive === true && !once.some(checkH2)) {
+    once.push('h2')
     createdList.textContent = `${h2} - Top Mid`
     orderedList.appendChild(createdList)
-  } else if (h3 !== '' && isActive === true) {
+  } else if (h3 !== '' && isActive === true && !once.some(checkH3)) {
+    once.push('h3')
     createdList.textContent = `${h3} - Top Right`
     orderedList.appendChild(createdList)
-  } else if (h4 !== '' && isActive === true) {
+  } else if (h4 !== '' && isActive === true && !once.some(checkH4)) {
+    once.push('h4')
     createdList.textContent = `${h4} - Mid Left`
     orderedList.appendChild(createdList)
-  } else if (h5 !== '' && isActive === true) {
+  } else if (h5 !== '' && isActive === true && !once.some(checkH5)) {
+    once.push('h5')
     createdList.textContent = `${h5} - Mid`
     orderedList.appendChild(createdList)
-  } else if (h6 !== '' && isActive === true) {
+  } else if (h6 !== '' && isActive === true && !once.some(checkH6)) {
+    once.push('h6')
     createdList.textContent = `${h6} - Mid Right`
     orderedList.appendChild(createdList)
-  } else if (h7 !== '' && isActive === true) {
+  } else if (h7 !== '' && isActive === true && !once.some(checkH7)) {
+    once.push('h7')
     createdList.textContent = `${h7} - Bottom Left`
     orderedList.appendChild(createdList)
-  } else if (h8 !== '' && isActive === true) {
+  } else if (h8 !== '' && isActive === true && !once.some(checkH8)) {
+    once.push('h8')
     createdList.textContent = `${h8} - Bottom Mid`
     orderedList.appendChild(createdList)
-  } else if (h9 !== '' && isActive === true) {
+  } else if (h9 !== '' && isActive === true && !once.some(checkH9)) {
+    once.push('h9')
     createdList.textContent = `${h9} - Bottom Right`
     orderedList.appendChild(createdList)
   }
@@ -258,4 +268,42 @@ function home() {
 
 function historyDisplayNone() {
   historyDisplay.classList.toggle('display-history')
+}
+
+//working in progress
+
+function checkH1(element) {
+  return element == 'h1'
+}
+
+function checkH2(element) {
+  return element == 'h2'
+}
+
+function checkH3(element) {
+  return element == 'h3'
+}
+
+function checkH4(element) {
+  return element == 'h4'
+}
+
+function checkH5(element) {
+  return element == 'h5'
+}
+
+function checkH6(element) {
+  return element == 'h6'
+}
+
+function checkH7(element) {
+  return element == 'h7'
+}
+
+function checkH8(element) {
+  return element == 'h8'
+}
+
+function checkH9(element) {
+  return element == 'h9'
 }
