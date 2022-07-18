@@ -66,20 +66,14 @@ boardStates.forEach((rows, rowIndex) => {
 
     undoBtn.addEventListener('click', () => {
       if (historyCounter <= historyState.length && historyCounter >= 1) {
-        columnDiv.textContent =
-          historyState[historyState.length - historyCounter][columnIndex][
-            rowIndex
-          ]
+        columnDiv.textContent = historyState[historyState.length - historyCounter][columnIndex][rowIndex]
       } else {
         historyCounter = 1
       }
     })
     redoBtn.addEventListener('click', () => {
       if (historyCounter <= historyState.length && historyCounter >= 1) {
-        columnDiv.textContent =
-          historyState[historyState.length - historyCounter][columnIndex][
-            rowIndex
-          ]
+        columnDiv.textContent = historyState[historyState.length - historyCounter][columnIndex][rowIndex]
         if (historyCounter === 0) {
           historyCounter = 1
         }
@@ -218,39 +212,39 @@ function reset() {
 function getHistory() {
   let [[h1, h2, h3], [h4, h5, h6], [h7, h8, h9]] = boardStates
   let createdList = document.createElement('li')
-  if (h1 !== '' && isActive === true && !once.some(checkH1)) {
+  if (h1 !== '' && !once.some(checkH1)) {
     once.push('h1')
     createdList.textContent = `${h1} - Top Left`
     orderedList.appendChild(createdList)
-  } else if (h2 !== '' && isActive === true && !once.some(checkH2)) {
+  } else if (h2 !== '' && !once.some(checkH2)) {
     once.push('h2')
     createdList.textContent = `${h2} - Top Mid`
     orderedList.appendChild(createdList)
-  } else if (h3 !== '' && isActive === true && !once.some(checkH3)) {
+  } else if (h3 !== '' && !once.some(checkH3)) {
     once.push('h3')
     createdList.textContent = `${h3} - Top Right`
     orderedList.appendChild(createdList)
-  } else if (h4 !== '' && isActive === true && !once.some(checkH4)) {
+  } else if (h4 !== '' && !once.some(checkH4)) {
     once.push('h4')
     createdList.textContent = `${h4} - Mid Left`
     orderedList.appendChild(createdList)
-  } else if (h5 !== '' && isActive === true && !once.some(checkH5)) {
+  } else if (h5 !== '' && !once.some(checkH5)) {
     once.push('h5')
     createdList.textContent = `${h5} - Mid`
     orderedList.appendChild(createdList)
-  } else if (h6 !== '' && isActive === true && !once.some(checkH6)) {
+  } else if (h6 !== '' && !once.some(checkH6)) {
     once.push('h6')
     createdList.textContent = `${h6} - Mid Right`
     orderedList.appendChild(createdList)
-  } else if (h7 !== '' && isActive === true && !once.some(checkH7)) {
+  } else if (h7 !== '' && !once.some(checkH7)) {
     once.push('h7')
     createdList.textContent = `${h7} - Bottom Left`
     orderedList.appendChild(createdList)
-  } else if (h8 !== '' && isActive === true && !once.some(checkH8)) {
+  } else if (h8 !== '' && !once.some(checkH8)) {
     once.push('h8')
     createdList.textContent = `${h8} - Bottom Mid`
     orderedList.appendChild(createdList)
-  } else if (h9 !== '' && isActive === true && !once.some(checkH9)) {
+  } else if (h9 !== '' && !once.some(checkH9)) {
     once.push('h9')
     createdList.textContent = `${h9} - Bottom Right`
     orderedList.appendChild(createdList)
@@ -270,7 +264,7 @@ function historyDisplayNone() {
   historyDisplay.classList.toggle('display-history')
 }
 
-//working in progress
+//work in progress//
 
 function checkH1(element) {
   return element == 'h1'
